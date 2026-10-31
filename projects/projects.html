@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Project details from Alejandro." />
+    <title>Project — Alejandro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="projects.css" />
+    <script src="project.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="Alejandro portfolio home"><span class="brand-mark" aria-hidden="true">A</span><span>Alejandro · Portfolio</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../about/about.html">About</a>
+          <a class="nav-link is-active" href="projects.html?slug=recetario">Projects</a>
+          <a class="nav-link nav-link--github" href="https://github.com/mesegr" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        </nav>
+      </header>
+      <main id="project-detail" class="project-detail" aria-live="polite">
+        <a class="back-link" href="../index.html#selected-work">← Back to selected work</a>
+        <p class="eyebrow" id="project-category"></p>
+        <h1 id="project-title">Loading project…</h1>
+        <p class="project-lead" id="project-description"></p>
+        <section class="detail-panel" aria-labelledby="about-project-title">
+          <div class="detail-main">
+            <p class="eyebrow">The project</p>
+            <h2 id="about-project-title">About this project</h2>
+            <p id="project-long-description"></p>
+            <section id="project-gallery" class="project-gallery" aria-label="Project screenshots" hidden><div class="gallery-viewport" id="gallery-viewport"></div><div class="gallery-controls" id="gallery-controls" hidden><button type="button" id="gallery-prev" aria-label="Previous image">←</button><span id="gallery-position" aria-live="polite"></span><button type="button" id="gallery-next" aria-label="Next image">→</button></div></section>
+          </div>
+          <aside class="detail-side">
+            <div><span class="detail-label">Status</span><span id="project-status"></span></div>
+            <div><span class="detail-label">Year</span><span id="project-year"></span></div>
+            <div><span class="detail-label">Built with</span><ul id="project-technologies"></ul></div>
+            <div id="project-links" class="detail-links"></div>
+          </aside>
+        </section>
+      </main>
+      <dialog class="image-lightbox" id="image-lightbox" aria-label="Enlarged project image">
+        <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Previous image">‹</button>
+        <figure class="lightbox-figure"><img id="lightbox-image" alt="" /></figure>
+        <span class="lightbox-count" id="lightbox-count" aria-live="polite"></span>
+        <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Next image">›</button>
+      </dialog>
+      <footer class="site-footer"><span>© 2026 ALEJANDRO</span><span>Built with curiosity & care</span><a href="../index.html">Back home ↑</a></footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "recetario",
+    "name": "Recetario",
+    "category": "Web application",
+    "images": [{ "src": "../images/recetario/recetario1.png", "alt": "Recetario, captura de la aplicación" }, { "src": "../images/recetario/recetario2.png", "alt": "Recetario, segunda vista de la aplicación" }],
+    "year": "2026",
+    "shortDescription": "Basic recipe web for practicing responsive design and web publishing.",
+    "description": "A Basic recipe web for a class assignment to practice responsive design, later extended to practice injecting HTML with JavaScript and web publishing.",
+    "status": "In progress",
+    "technologies": ["HTML", "CSS", "JavaScript"],
+    "links": {
+      "live": "https://recetario.bascomias.workers.dev/",
+      "github": ""
+    }
+  }
+]
