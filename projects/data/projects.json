@@ -11,6 +11,29 @@
     "technologies": ["HTML", "CSS", "JavaScript"],
     "links": {
       "live": "https://recetario.bascomias.workers.dev/",
+      "github": "https://github.com/mesegr/recetario"
+    }
+  },
+  {
+    "slug": "veilfire-requiem",
+    "name": "Veilfire Requiem",
+    "category": "2D action-adventure game",
+    "homeImage": "../images/veilfireRequiem/VeilRequiem3.png",
+    "images": [
+      { "src": "../images/veilfireRequiem/VeilRequiem1.png", "alt": "Veilfire Requiem gameplay screenshot 1" },
+      { "src": "../images/veilfireRequiem/VeilRequiem2.png", "alt": "Veilfire Requiem gameplay screenshot 2" },
+      { "src": "../images/veilfireRequiem/VeilRequiem3.png", "alt": "Veilfire Requiem gameplay screenshot 3" },
+      { "src": "../images/veilfireRequiem/VeilRequiem4.png", "alt": "Veilfire Requiem gameplay screenshot 4" },
+      { "src": "../images/veilfireRequiem/VeilRequiem5.png", "alt": "Veilfire Requiem gameplay screenshot 5" },
+      { "src": "../images/veilfireRequiem/VeilRequiem6.png", "alt": "Veilfire Requiem gameplay screenshot 6" }
+    ],
+    "year": "2024 / 2025",
+    "shortDescription": "A 2D action-adventure game developed in Godot while learning new technologies.",
+    "description": "Veilfire Requiem is a 2D action-adventure game developed in Godot as a way to learn new technologies.",
+    "status": "In Beta",
+    "technologies": ["Godot" , "GD Script"],
+    "links": {
+      "live": "",
       "github": ""
     }
   }

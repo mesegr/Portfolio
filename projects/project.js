@@ -57,7 +57,9 @@ async function renderProject() {
   };
   if (images.length) {
     gallery.hidden = false;
-    viewport.replaceChildren(...images.map((image, index) => {
+    const track = document.createElement("div");
+    track.className = "gallery-track";
+    track.append(...images.map((image, index) => {
       const frame = document.createElement("figure");
       frame.className = "gallery-frame";
       const img = document.createElement("img");
@@ -72,19 +74,48 @@ async function renderProject() {
       frame.append(img);
       return frame;
     }));
-    if (images.length > 2) {
+    if (images.length > 1) {
+      [...track.children].slice(0, 2).forEach((frame, offset) => {
+        const clone = frame.cloneNode(true);
+        const cloneIndex = offset;
+        const cloneImage = clone.querySelector("img");
+        cloneImage.addEventListener("click", () => openLightbox(cloneIndex, cloneImage));
+        track.append(clone);
+      });
+    }
+    viewport.replaceChildren(track);
+    if (images.length > 1) {
       controls.hidden = false;
       viewport.classList.add("is-carousel");
-      const slides = [...viewport.children];
+      viewport.append(controls);
+      document.querySelector("#gallery-position").textContent = "";
+      const slides = [...track.children];
       let current = 0;
       const show = (index) => {
-        current = (index + slides.length) % slides.length;
-        slides.forEach((slide, i) => slide.hidden = i !== current);
-        document.querySelector("#gallery-position").textContent = `${current + 1} / ${slides.length}`;
+        current = index;
+        const step = slides[0].getBoundingClientRect().width + 16;
+        track.style.transform = `translateX(-${current * step}px)`;
       };
-      document.querySelector("#gallery-prev").addEventListener("click", () => show(current - 1));
+      track.addEventListener("transitionend", () => {
+        if (current >= images.length) {
+          track.style.transition = "none";
+          current = 0;
+          track.style.transform = "translateX(0)";
+          requestAnimationFrame(() => { track.style.transition = ""; });
+        }
+      });
+      document.querySelector("#gallery-prev").addEventListener("click", () => {
+        if (current === 0) {
+          const step = slides[0].getBoundingClientRect().width + 16;
+          track.style.transition = "none";
+          current = images.length;
+          track.style.transform = `translateX(-${current * step}px)`;
+          requestAnimationFrame(() => requestAnimationFrame(() => { track.style.transition = ""; show(current - 1); }));
+        } else show(current - 1);
+      });
       document.querySelector("#gallery-next").addEventListener("click", () => show(current + 1));
       show(0);
+      window.setInterval(() => show(current + 1), 2000);
     }
   }
 
@@ -112,7 +143,7 @@ async function renderProject() {
 
   const links = document.querySelector("#project-links");
   links.replaceChildren();
-  for (const [label, url] of [["Visit website", project.links.live], ["View source", project.links.github]]) {
+  for (const [label, url] of [["Visit website", project.links.live], ["GitHub repository", project.links.github]]) {
     if (!url) continue;
     const link = document.createElement("a");
     link.href = url;
