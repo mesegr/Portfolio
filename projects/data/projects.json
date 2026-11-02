@@ -36,5 +36,27 @@
       "live": "",
       "github": ""
     }
+  },
+  {
+    "slug": "traytasks",
+    "name": "TrayTasks",
+    "category": "Windows productivity app",
+    "homeImage": "../images/TrayTasks/trayTasks5.png",
+    "images": [
+      { "src": "../images/TrayTasks/trayTasks1.png", "alt": "TrayTasks, main window" },
+      { "src": "../images/TrayTasks/trayTasks2.png", "alt": "TrayTasks, task view" },
+      { "src": "../images/TrayTasks/trayTasks3.png", "alt": "TrayTasks, calendar view" },
+      { "src": "../images/TrayTasks/trayTasks4.png", "alt": "TrayTasks, reminder settings" }
+    ],
+    "year": "2026",
+    "shortDescription": "A lightweight Windows task manager that keeps tasks and reminders close at hand in the system tray.",
+    "description": "TrayTasks is a Windows desktop app for organizing tasks and reminders from the system tray. Create tasks with dates, times, importance, recurring schedules, and project groups. Use the calendar, configurable advance notifications, snooze, search, and filters to stay on top of what’s next. Your data is stored locally, with backup and restore options.",
+    "status": "In Beta",
+    "technologies": [".NET 10", "C#", "Windows Forms"],
+    "links": {
+      "live": "",
+      "github": "https://github.com/mesegr/Tray-Tasks",
+      "download": "https://github.com/mesegr/Tray-Tasks/releases/download/v0.1.0/TrayTasks-win-x64.zip"
+    }
   }
 ]

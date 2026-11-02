@@ -143,7 +143,7 @@ async function renderProject() {
 
   const links = document.querySelector("#project-links");
   links.replaceChildren();
-  for (const [label, url] of [["Visit website", project.links.live], ["GitHub repository", project.links.github]]) {
+  for (const [label, url] of [["Visit website", project.links.live], ["Download for Windows", project.links.download], ["GitHub repository", project.links.github]]) {
     if (!url) continue;
     const link = document.createElement("a");
     link.href = url;
