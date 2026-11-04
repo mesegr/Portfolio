@@ -179,8 +179,18 @@ function renderCatalog(projects) {
     if (cover) {
       const image = document.createElement("img");
       image.className = "home-project-image is-visible";
-      image.src = cover.src;
-      image.alt = cover.alt ?? `${project.name} screenshot`;
+      const smallScreen = window.matchMedia("(max-width: 1024px)");
+      const setCardImage = () => {
+        const useCompactImage = compact && project.compactImage && smallScreen.matches;
+        image.src = useCompactImage ? project.compactImage : cover.src;
+        image.alt = useCompactImage
+          ? (project.compactImageAlt ?? `${project.name} logo`)
+          : (cover.alt ?? `${project.name} screenshot`);
+      };
+      setCardImage();
+      if (compact && project.compactImage) {
+        smallScreen.addEventListener("change", setCardImage);
+      }
       image.loading = "lazy";
       preview.append(image);
     }

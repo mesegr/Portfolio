@@ -89,8 +89,10 @@
     "slug": "freestylea-app",
     "featured": false,
     "name": "Freestylea App",
-    "category": "Android freestyle rap practice app",
+    "category": "Android freestyle practice app",
     "homeImage": "../images/FreestyleaAPP/free1.jpg",
+    "compactImage": "../images/FreestyleaAPP/logo.png",
+    "compactImageAlt": "Freestylea app logo",
     "images": [
       { "src": "../images/FreestyleaAPP/free2.jpg", "alt": "Freestylea, themes practice screen" },
       { "src": "../images/FreestyleaAPP/free3.jpg", "alt": "Freestylea, random words screen" },
@@ -113,6 +115,8 @@
     "name": "Simon Says Classic",
     "category": "Android game",
     "homeImage": "../images/simonsays/simonmain.png",
+    "compactImage": "../images/simonsays/logo.png",
+    "compactImageAlt": "Simon Says Classic app logo",
     "images": [
       { "src": "../images/simonsays/simon1.jpg", "alt": "Simon Says Classic, gameplay" }
     ],
