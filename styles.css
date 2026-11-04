@@ -17,5 +17,6 @@
 .project-card--home .project-preview--image{aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden}
 .project-card--home .project-preview--image>.home-project-image.is-visible{object-position:center center}
 .project-card--home .project-description{max-width:none}
+@media(max-width:700px){.hero-art{display:none}}
 .project-info h3{margin-top:.1rem}.site-nav,.eyebrow,.hero-intro,.button,.text-link,.project-number,.project-description,.project-meta,.site-footer{font-size:calc(1em + 1px)}.brand{font-size:1rem}.project-info h3{font-size:2.4rem}
 .site-footer{font-size:.72rem!important}
