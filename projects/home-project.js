@@ -1,7 +1,7 @@
 async function renderProjects() {
   const response = await fetch("projects/data/projects.json");
   if (!response.ok) return;
-  const projects = await response.json();
+  const projects = (await response.json()).filter((project) => project.featured !== false);
   const list = document.querySelector("#project-list");
   list.replaceChildren(...projects.map((project, index) => {
     const card = document.createElement("a");

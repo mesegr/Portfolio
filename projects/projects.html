@@ -19,10 +19,22 @@
         <nav class="site-nav" aria-label="Main navigation">
           <a class="nav-link" href="../index.html">Home</a>
           <a class="nav-link" href="../about/about.html">About</a>
-          <a class="nav-link is-active" href="projects.html?slug=recetario">Projects</a>
+          <a class="nav-link is-active" href="projects.html">Projects</a>
           <a class="nav-link nav-link--github" href="https://github.com/mesegr" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
+      <main id="project-catalog" class="project-catalog" hidden>
+        <p class="eyebrow">Portfolio</p>
+        <h1>All projects</h1>
+        <section aria-labelledby="catalog-featured-title">
+          <div class="section-heading catalog-heading"><div><p class="eyebrow">Selected work</p><h2 id="catalog-featured-title">Featured projects</h2></div></div>
+          <div class="project-list catalog-featured" id="catalog-featured"></div>
+        </section>
+        <section class="catalog-more" aria-labelledby="catalog-more-title">
+          <div class="section-heading catalog-heading"><div><p class="eyebrow">More work</p><h2 id="catalog-more-title">Other projects</h2></div></div>
+          <div class="project-list catalog-secondary" id="catalog-secondary"></div>
+        </section>
+      </main>
       <main id="project-detail" class="project-detail" aria-live="polite">
         <a class="back-link" href="../index.html#selected-work">← Back to selected work</a>
         <p class="eyebrow" id="project-category"></p>

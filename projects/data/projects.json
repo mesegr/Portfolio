@@ -1,6 +1,7 @@
 [
   {
     "slug": "recetario",
+    "featured": true,
     "name": "Recetario",
     "category": "Web application",
     "images": [{ "src": "../images/recetario/recetario1.png", "alt": "Recetario, captura de la aplicación" }, { "src": "../images/recetario/recetario2.png", "alt": "Recetario, segunda vista de la aplicación" }, { "src": "../images/recetario/recetario3.png", "alt": "Recetario, tercera vista de la aplicación" }],
@@ -16,6 +17,7 @@
   },
   {
     "slug": "veilfire-requiem",
+    "featured": true,
     "name": "Veilfire Requiem",
     "category": "2D action-adventure game",
     "homeImage": "../images/veilfireRequiem/VeilRequiem3.png",
@@ -39,6 +41,7 @@
   },
   {
     "slug": "traytasks",
+    "featured": true,
     "name": "TrayTasks",
     "category": "Windows productivity app",
     "homeImage": "../images/TrayTasks/trayTasks5.png",
@@ -57,6 +60,71 @@
       "live": "",
       "github": "https://github.com/mesegr/Tray-Tasks",
       "download": "https://github.com/mesegr/Tray-Tasks/releases/download/v0.1.0/TrayTasks-win-x64.zip"
+    }
+  },
+  {
+    "slug": "todo-app",
+    "featured": true,
+    "name": "Todo App",
+    "category": "Android productivity app",
+    "homeImage": "../images/todoapp/todomain.jpg",
+    "images": [
+      { "src": "../images/todoapp/todo2.jpg", "alt": "Todo App, add a task" },
+      { "src": "../images/todoapp/todo3.jpg", "alt": "Todo App, edit a task" },
+      { "src": "../images/todoapp/todo4.jpg", "alt": "Todo App, delete a task" },
+      { "src": "../images/todoapp/todo5.jpg", "alt": "Todo App, Android home screen widget" }
+    ],
+    "year": "2026",
+    "shortDescription": "An Android task manager for organizing daily tasks and recurring reminders, with a handy home screen widget.",
+    "description": "Todo App is an Android task manager for creating, editing, and organizing tasks. Set one-time or recurring reminders, receive notifications with vibration, and keep track of what is due today, upcoming, or still pending. Tasks are stored locally on the device, and the home screen widget shows task counts and provides a shortcut to add a task.",
+    "status": "Released",
+    "technologies": ["Flutter", "Dart", "Kotlin", "Android SDK", "SharedPreferences"],
+    "links": {
+      "live": "",
+      "github": "https://github.com/mesegr/ToDo-app",
+      "download": "https://github.com/mesegr/ToDo-app/releases/latest/download/app-release.apk"
+    }
+  },
+  {
+    "slug": "freestylea-app",
+    "featured": false,
+    "name": "Freestylea App",
+    "category": "Android freestyle rap practice app",
+    "homeImage": "../images/FreestyleaAPP/free1.jpg",
+    "images": [
+      { "src": "../images/FreestyleaAPP/free2.jpg", "alt": "Freestylea, themes practice screen" },
+      { "src": "../images/FreestyleaAPP/free3.jpg", "alt": "Freestylea, random words screen" },
+      { "src": "../images/FreestyleaAPP/free4.jpg", "alt": "Freestylea, rhyme endings screen" }
+    ],
+    "year": "2026",
+    "shortDescription": "A mobile app for freestyle rappers to practice improvisation with random words, themes, and rhyme endings.",
+    "description": "Freestylea helps freestyle rap lovers practice creativity, flow, and improvisation anywhere. Choose a practice mode: get random words that refresh on a timer, explore themes, or receive rhyme endings to spark your next bars. Built as a native Android app with a simple, focused interface.",
+    "status": "Available",
+    "technologies": ["Kotlin", "Jetpack Compose", "Android"],
+    "links": {
+      "live": "",
+      "github": "https://github.com/mesegr/Freestylea_APP",
+      "download": "https://github.com/mesegr/Freestylea_APP/releases/tag/V1.0.0"
+    }
+  },
+  {
+    "slug": "simon-says",
+    "featured": false,
+    "name": "Simon Says Classic",
+    "category": "Android game",
+    "homeImage": "../images/simonsays/simonmain.png",
+    "images": [
+      { "src": "../images/simonsays/simon1.jpg", "alt": "Simon Says Classic, gameplay" }
+    ],
+    "year": "2025",
+    "shortDescription": "An Android memory game where you repeat an increasingly long sequence of colored lights.",
+    "description": "Simon Says Classic is an Android take on the classic memory game. Watch the colored buttons light up, then repeat the sequence. Each successful round adds another color. The app tracks your current score and saves your personal record locally.",
+    "status": "Released",
+    "technologies": ["Kotlin", "Jetpack Compose", "Android SDK", "StateFlow"],
+    "links": {
+      "live": "",
+      "github": "https://github.com/mesegr/Simon-says",
+      "download": "https://github.com/mesegr/Simon-says/releases/download/v1.0.0/Download.Simon.Says.apk"
     }
   }
 ]

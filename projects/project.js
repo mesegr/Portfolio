@@ -8,6 +8,10 @@ async function renderProject() {
   const response = await fetch("data/projects.json");
   if (!response.ok) throw new Error("Could not load project data.");
   const projects = await response.json();
+  if (!slug) {
+    renderCatalog(projects);
+    return;
+  }
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {
@@ -143,7 +147,8 @@ async function renderProject() {
 
   const links = document.querySelector("#project-links");
   links.replaceChildren();
-  for (const [label, url] of [["Visit website", project.links.live], ["Download for Windows", project.links.download], ["GitHub repository", project.links.github]]) {
+  const downloadLabel = project.technologies.includes("Android") ? "Download for Android" : "Download for Windows";
+  for (const [label, url] of [["Visit website", project.links.live], [downloadLabel, project.links.download], ["GitHub repository", project.links.github]]) {
     if (!url) continue;
     const link = document.createElement("a");
     link.href = url;
@@ -152,6 +157,59 @@ async function renderProject() {
     link.textContent = `${label} ↗`;
     links.append(link);
   }
+}
+
+function renderCatalog(projects) {
+  document.title = "Projects — Alejandro";
+  document.querySelector("#project-detail").hidden = true;
+  const catalog = document.querySelector("#project-catalog");
+  catalog.hidden = false;
+  const primary = catalog.querySelector("#catalog-featured");
+  const secondary = catalog.querySelector("#catalog-secondary");
+  const makeCard = (project, compact = false) => {
+    const card = document.createElement("a");
+    card.className = `project-card project-card--home${compact ? " project-card--compact" : ""}`;
+    card.href = `projects.html?slug=${encodeURIComponent(project.slug)}`;
+    const preview = document.createElement("div");
+    preview.className = "project-preview project-preview--image";
+    const images = Array.isArray(project.images) ? project.images : [];
+    const cover = project.homeImage
+      ? images.find((image) => image.src === project.homeImage) ?? { src: project.homeImage }
+      : images[0];
+    if (cover) {
+      const image = document.createElement("img");
+      image.className = "home-project-image is-visible";
+      image.src = cover.src;
+      image.alt = cover.alt ?? `${project.name} screenshot`;
+      image.loading = "lazy";
+      preview.append(image);
+    }
+    const info = document.createElement("div");
+    info.className = "project-info";
+    const copy = document.createElement("div");
+    const name = document.createElement("h3");
+    name.textContent = project.name;
+    const description = document.createElement("p");
+    description.className = "project-description";
+    description.textContent = project.shortDescription;
+    copy.append(name, description);
+    const meta = document.createElement("div");
+    meta.className = "project-meta";
+    const category = document.createElement("span");
+    category.textContent = project.category;
+    const year = document.createElement("span");
+    year.textContent = project.year;
+    const arrow = document.createElement("span");
+    arrow.className = "project-arrow";
+    arrow.textContent = "↗";
+    meta.append(category, year, arrow);
+    info.append(copy, meta);
+    card.append(preview, info);
+    return card;
+  };
+  primary.replaceChildren(...projects.filter((project) => project.featured !== false).map((project) => makeCard(project)));
+  secondary.replaceChildren(...projects.filter((project) => project.featured === false).map((project) => makeCard(project, true)));
+  catalog.querySelector(".catalog-more").hidden = secondary.childElementCount === 0;
 }
 
 renderProject().catch(() => {
