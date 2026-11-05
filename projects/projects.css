@@ -71,7 +71,7 @@
 .project-gallery--traytasks .gallery-frame img{width:100%;height:100%;max-height:none;object-fit:cover}
 .project-gallery--todo-app .gallery-frame{aspect-ratio:750/1590;display:grid;place-items:center}
 .project-gallery--todo-app .gallery-frame img{width:100%;height:100%;max-height:none;object-fit:cover}
-.project-gallery--simon-says .gallery-frame img{max-height:70vh}
+.project-gallery--simon-says .gallery-frame img{max-height:75vh}
 @media(prefers-reduced-motion:reduce){
   .gallery-track,.gallery-controls button,.image-lightbox[open] .lightbox-figure img,.image-lightbox .lightbox-close,.image-lightbox .lightbox-nav{transition:none!important;animation:none!important}
   .gallery-track{will-change:auto}
