@@ -34,7 +34,10 @@ async function renderProject() {
   const images = Array.isArray(project.images) ? project.images : [];
   let lightboxIndex = 0;
   const lightbox = document.querySelector("#image-lightbox");
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
   const lightboxImage = document.querySelector("#lightbox-image");
+  let lightboxOpener = null;
   const showLightboxImage = (index) => {
     lightboxIndex = (index + images.length) % images.length;
     lightboxImage.src = images[lightboxIndex].src;
@@ -42,11 +45,16 @@ async function renderProject() {
     document.querySelector("#lightbox-count").textContent = `${lightboxIndex + 1} / ${images.length}`;
   };
   const openLightbox = (index, sourceImage) => {
+    lightboxOpener = sourceImage;
     showLightboxImage(index);
     lightbox.showModal();
     const target = lightboxImage;
     const source = sourceImage.getBoundingClientRect();
     requestAnimationFrame(() => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        lightbox.classList.add("is-expanded");
+        return;
+      }
       const end = target.getBoundingClientRect();
       const dx = source.left + source.width / 2 - (end.left + end.width / 2);
       const dy = source.top + source.height / 2 - (end.top + end.height / 2);
@@ -70,6 +78,7 @@ async function renderProject() {
       img.src = image.src;
       img.alt = image.alt || `${project.name} screenshot ${index + 1}`;
       img.loading = index ? "lazy" : "eager";
+      img.decoding = "async";
       img.tabIndex = 0;
       img.setAttribute("role", "button");
       img.setAttribute("aria-label", `Open enlarged image ${index + 1}`);
@@ -127,9 +136,24 @@ async function renderProject() {
   document.querySelector("#lightbox-prev").addEventListener("click", () => showLightboxImage(lightboxIndex - 1));
   document.querySelector("#lightbox-next").addEventListener("click", () => showLightboxImage(lightboxIndex + 1));
   lightbox.addEventListener("click", (event) => { if (event.target === lightbox) lightbox.close(); });
+  lightbox.addEventListener("close", () => {
+    lightbox.classList.remove("is-expanded");
+    lightboxOpener?.focus({ preventScroll: true });
+    lightboxOpener = null;
+  });
   lightbox.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") showLightboxImage(lightboxIndex - 1);
-    if (event.key === "ArrowRight") showLightboxImage(lightboxIndex + 1);
+    if (event.key === "Escape") {
+      event.preventDefault();
+      lightbox.close();
+    }
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showLightboxImage(lightboxIndex - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showLightboxImage(lightboxIndex + 1);
+    }
   });
   let touchStartX = 0;
   lightbox.addEventListener("touchstart", (event) => { touchStartX = event.changedTouches[0].screenX; }, { passive: true });
@@ -153,7 +177,7 @@ async function renderProject() {
     const link = document.createElement("a");
     link.href = url;
     link.target = "_blank";
-    link.rel = "noreferrer";
+    link.rel = "noopener noreferrer";
     link.textContent = `${label} ↗`;
     links.append(link);
   }
@@ -192,6 +216,7 @@ function renderCatalog(projects) {
         smallScreen.addEventListener("change", setCardImage);
       }
       image.loading = "lazy";
+      image.decoding = "async";
       preview.append(image);
     }
     const info = document.createElement("div");
