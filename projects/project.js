@@ -265,18 +265,62 @@ async function renderProject() {
     return item;
   }));
 
-  const links = document.querySelector("#project-links");
-  links.replaceChildren();
-  const downloadLabel = project.technologies.includes("Android") ? "Download for Android" : "Download for Windows";
-  for (const [label, url] of [["Visit website", project.links.live], [downloadLabel, project.links.download], ["GitHub repository", project.links.github]]) {
-    if (!url) continue;
+  const longParagraph = document.querySelector("#project-long-description");
+  const normalizeText = (value) => (value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const normalizedLong = normalizeText(project.description);
+  const normalizedShort = normalizeText(project.shortDescription);
+  const longIsRedundant = normalizedLong !== "" && normalizedShort !== "" &&
+    (normalizedLong === normalizedShort || normalizedLong.startsWith(normalizedShort) || normalizedShort.startsWith(normalizedLong));
+  longParagraph.hidden = longIsRedundant || normalizedLong === "";
+
+  const renderListSection = (items, eyebrowText, headingText) => {
+    if (!Array.isArray(items) || items.length === 0) return null;
+    const section = document.createElement("section");
+    section.className = "project-notes";
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = eyebrowText;
+    const heading = document.createElement("h3");
+    heading.textContent = headingText;
+    const list = document.createElement("ul");
+    for (const item of items) {
+      const chip = document.createElement("li");
+      chip.textContent = item;
+      list.append(chip);
+    }
+    section.append(eyebrow, heading, list);
+    return section;
+  };
+  const highlightsSection = renderListSection(project.highlights, "Highlights", "What I built");
+  const lessonsSection = renderListSection(project.learned, "Lessons", "What I learned");
+  if (highlightsSection) longParagraph.after(highlightsSection);
+  if (lessonsSection) (highlightsSection ?? longParagraph).after(lessonsSection);
+
+  const actions = document.querySelector("#project-actions");
+  actions.replaceChildren();
+  const links = project.links ?? {};
+  const makeActionButton = (className, label, url) => {
     const link = document.createElement("a");
+    link.className = className;
     link.href = url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = `${label} ↗`;
-    links.append(link);
-  }
+    const labelNode = document.createElement("span");
+    labelNode.textContent = label;
+    const arrow = document.createElement("span");
+    arrow.textContent = "↗";
+    link.append(labelNode, arrow);
+    return link;
+  };
+  if (links.live) actions.append(makeActionButton("button button--primary", "Live demo", links.live));
+  else if (links.download) actions.append(makeActionButton("button button--primary", "Download", links.download));
+  if (links.github) actions.append(makeActionButton("button button--secondary", "GitHub", links.github));
 }
 
 function renderCatalog(projects) {
