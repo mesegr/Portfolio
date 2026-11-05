@@ -31,7 +31,6 @@ async function renderProject() {
   const gallery = document.querySelector("#project-gallery");
   gallery.classList.toggle("project-gallery--traytasks", project.slug === "traytasks");
   gallery.classList.toggle("project-gallery--todo-app", project.slug === "todo-app");
-  gallery.classList.toggle("project-gallery--simon-says", project.slug === "simon-says");
   const viewport = document.querySelector("#gallery-viewport");
   const controls = document.querySelector("#gallery-controls");
   const images = Array.isArray(project.images) ? project.images : [];
