@@ -3,8 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="I'm studying web development and making things with code, from small apps to a game I built while learning Godot." />
+    <meta name="description" content="Alejandro's developer portfolio, featuring projects across web, Android, Windows, and games." />
+    <meta name="theme-color" content="#171a2b" />
+    <meta property="og:title" content="Alejandro — Developer Portfolio" />
+    <meta property="og:description" content="Projects across web, Android, Windows, and games by Alejandro." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
     <title>Alejandro — Portfolio</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -23,7 +29,7 @@
           <a class="nav-link is-active" href="index.html">Home</a>
           <a class="nav-link" href="about/about.html">About</a>
           <a class="nav-link" href="projects/projects.html">Projects</a>
-          <a class="nav-link nav-link--github" href="https://github.com/mesegr" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="nav-link nav-link--github" href="https://github.com/mesegr" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
 
@@ -31,7 +37,7 @@
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-copy">
             <h1 id="hero-title">Building things<br /><em>with code.</em></h1>
-            <p class="hero-intro">I’m studying web development (DAW) and have tried a few different areas: game development, web development, and desktop apps. I’m still exploring what I enjoy most.</p>
+            <p class="hero-intro">I'm studying web development (DAW) and building projects across web, Android, Windows and games. Right now I'm focusing on web and app development.</p>
             <div class="hero-actions">
               <a class="button button--primary" href="#selected-work">Explore my work <span aria-hidden="true">↓</span></a>
               <a class="text-link" href="about/about.html">More about me <span aria-hidden="true">↗</span></a>
@@ -43,9 +49,9 @@
             <div class="orb orb--cyan"></div>
             <div class="glass-shape glass-shape--back"></div>
             <div class="glass-shape glass-shape--front">
-              <span class="shape-label">a bit of everything</span>
+              <span class="shape-label">selected projects</span>
               <strong aria-label="Game, apps, web">game <b>·</b> apps <i>·</i> web</strong>
-              <span class="shape-arrow">currently exploring ↗</span>
+              <span class="shape-arrow">currently building ↗</span>
             </div>
           </div>
         </section>
@@ -61,6 +67,8 @@
 
           <div class="project-list" id="project-list" aria-live="polite"></div>
         </section>
+
+        <noscript><p class="noscript-notice">JavaScript is needed to display project cards. Browse my work on <a href="https://github.com/mesegr">GitHub</a>.</p></noscript>
 
       </main>
 
