@@ -30,6 +30,7 @@ async function renderProject() {
   setText("#project-year", project.year);
   const gallery = document.querySelector("#project-gallery");
   gallery.classList.toggle("project-gallery--traytasks", project.slug === "traytasks");
+  gallery.classList.toggle("project-gallery--todo-app", project.slug === "todo-app");
   const viewport = document.querySelector("#gallery-viewport");
   const controls = document.querySelector("#gallery-controls");
   const images = Array.isArray(project.images) ? project.images : [];
