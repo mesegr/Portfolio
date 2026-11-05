@@ -73,7 +73,7 @@
 .project-gallery--todo-app .gallery-frame img{width:100%;height:100%;max-height:none;object-fit:cover}
 .project-gallery--simon-says .gallery-viewport{grid-template-columns:minmax(0,1fr)}
 .project-gallery--simon-says .gallery-frame{width:min(100%,26rem,40.6vh);aspect-ratio:750/1569;display:grid;place-items:center}
-.project-gallery--simon-says .gallery-frame img{width:100%;height:100%;max-height:none;object-fit:contain}
+.project-gallery--simon-says .gallery-frame img{width:100%;height:100%;max-height:none;object-fit:cover}
 @media(prefers-reduced-motion:reduce){
   .gallery-track,.gallery-controls button,.image-lightbox[open] .lightbox-figure img,.image-lightbox .lightbox-close,.image-lightbox .lightbox-nav{transition:none!important;animation:none!important}
   .gallery-track{will-change:auto}
