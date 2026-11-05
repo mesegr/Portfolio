@@ -29,6 +29,7 @@ async function renderProject() {
   setText("#project-status", project.status);
   setText("#project-year", project.year);
   const gallery = document.querySelector("#project-gallery");
+  gallery.classList.toggle("project-gallery--traytasks", project.slug === "traytasks");
   const viewport = document.querySelector("#gallery-viewport");
   const controls = document.querySelector("#gallery-controls");
   const images = Array.isArray(project.images) ? project.images : [];
