@@ -22,9 +22,8 @@
 .project-catalog{padding:4.5rem 0 7rem}.project-catalog>h1{margin:0 0 3.5rem;font-size:clamp(3.2rem,7vw,6rem)}.project-catalog section{margin-top:3.5rem}.project-catalog .catalog-heading{margin-bottom:1.5rem}.project-catalog .catalog-heading h2{font-size:clamp(2rem,4vw,3.4rem)}.catalog-secondary{grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.project-card--compact{grid-template-columns:1fr;grid-template-rows:auto 1fr;min-height:0}.project-card--compact .project-preview--image{aspect-ratio:16/10;min-height:0}.project-card--compact .project-preview--image>.home-project-image.is-visible{inset:.45rem;width:calc(100% - .9rem);height:calc(100% - .9rem);border-radius:1rem}.project-card--compact .project-info{min-height:12rem;padding:1.3rem;border-left:0;border-top:1px solid rgba(255,255,255,.2)}.project-card--compact .project-info h3{margin:.2rem 0 .6rem;font-size:1.65rem}.project-card--compact .project-description{font-size:.84rem}.project-card--compact .project-meta{font-size:.75rem}
 @media(max-width:700px){.project-catalog{padding:3.5rem 0 5rem}.project-catalog>h1{margin-bottom:2.5rem}.project-catalog section{margin-top:2.5rem}.catalog-secondary{grid-template-columns:repeat(2,minmax(0,1fr))}.project-card--compact .project-info{padding:1rem}.project-card--compact .project-info h3{font-size:1.35rem}}
 @media(max-width:480px){.catalog-secondary{grid-template-columns:1fr}}
-.project-detail .back-link{font-size:.72rem!important}.site-footer{font-size:.62rem!important}
-.project-detail .back-link{font-size:.82rem!important}.site-footer{font-size:.72rem!important}
-.site-footer{font-size:.72rem!important}
+.project-detail .back-link{font-size:.72rem!important}
+.project-detail .back-link{font-size:.82rem!important}
 @media(max-width:480px){.project-detail{padding:2.7rem 0 4rem}.project-detail h1{font-size:clamp(2.8rem,13vw,4rem);overflow-wrap:anywhere}.project-lead{margin-bottom:2rem;font-size:1rem;line-height:1.65}.back-link{margin-bottom:2rem}.detail-panel{gap:1.4rem;padding:1.1rem;border-radius:1.35rem}.detail-main h2{font-size:clamp(1.75rem,8vw,2.3rem)}.detail-main>p:last-child{font-size:.95rem;line-height:1.7}.detail-side{gap:1rem}.detail-side>div{font-size:.9rem}.project-actions{margin-bottom:2rem}.project-notes{margin-top:1.9rem}.project-catalog>h1{font-size:clamp(2.8rem,13vw,4rem)}.project-card--compact .project-meta{gap:.45rem;font-size:.75rem}}
 @media(max-width:340px){.detail-panel{padding:.85rem;border-radius:1.15rem}.project-catalog .catalog-heading h2{font-size:1.8rem}}
 .catalog-secondary{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
@@ -76,5 +75,5 @@
 @media(prefers-reduced-motion:reduce){
   .image-lightbox[open] .lightbox-figure img,.image-lightbox .lightbox-close,.image-lightbox .lightbox-nav{transition:none!important;animation:none!important}
 }
-/* TODO for the styles.css agent: .site-footer ('DM Mono') still sits below the .75rem minimum (projects.css lines 25-27 overrides and the .site-footer rule in styles.css) — left untouched here per task split; task agent C should verify/raise it. */
+
 
