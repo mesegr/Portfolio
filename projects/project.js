@@ -117,6 +117,7 @@ async function renderProject() {
     let dragMoved = false;
     let dragStartX = 0;
     let dragBaseScroll = 0;
+    let autoDrive = false;
     const canAutoScroll = () =>
       autoScrollEnabled &&
       images.length > 1 &&
@@ -133,6 +134,7 @@ async function renderProject() {
       const deltaSeconds = (time - lastFrameTime) / 1000;
       lastFrameTime = time;
       if (canAutoScroll()) {
+        autoDrive = true;
         if (edgeWaitStart === null) {
           position += direction * AUTO_SCROLL_SPEED * deltaSeconds;
           const maxScroll = viewport.scrollWidth - viewport.clientWidth;
@@ -152,13 +154,17 @@ async function renderProject() {
           direction = -direction;
         }
       } else {
+        autoDrive = false;
         position = viewport.scrollLeft;
         edgeWaitStart = null;
       }
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
-    viewport.addEventListener("scroll", () => { position = viewport.scrollLeft; });
+    // The autoscroll writes its own scroll offsets, so ignore scroll events it
+    // produced (they are snapped to integers and would desync the float
+    // accumulator). Manual scrolls still sync, usually from the paused branch.
+    viewport.addEventListener("scroll", () => { if (!autoDrive) position = viewport.scrollLeft; });
     viewport.addEventListener("mouseenter", () => {
       hoverPause = true;
       window.clearTimeout(resumeTimer);
