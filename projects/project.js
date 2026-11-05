@@ -33,14 +33,24 @@ async function renderProject() {
   gallery.classList.toggle("project-gallery--todo-app", project.slug === "todo-app");
   gallery.classList.toggle("project-gallery--simon-says", project.slug === "simon-says");
   const viewport = document.querySelector("#gallery-viewport");
-  const controls = document.querySelector("#gallery-controls");
   const images = Array.isArray(project.images) ? project.images : [];
+  const AUTO_SCROLL_SPEED = 40;
+  const AUTO_SCROLL_RESUME_MS = 2500;
+  const AUTO_SCROLL_EDGE_PAUSE_MS = 1200;
+  const autoScrollEnabled = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let lightboxIndex = 0;
   const lightbox = document.querySelector("#image-lightbox");
   lightbox.setAttribute("role", "dialog");
   lightbox.setAttribute("aria-modal", "true");
   const lightboxImage = document.querySelector("#lightbox-image");
   let lightboxOpener = null;
+  let lightboxPause = false;
+  let hoverPause = false;
+  let focusPause = false;
+  let dragPause = false;
+  let interactionPause = false;
+  let offscreenPause = true;
+  let resumeTimer = 0;
   const showLightboxImage = (index) => {
     lightboxIndex = (index + images.length) % images.length;
     lightboxImage.src = images[lightboxIndex].src;
@@ -49,6 +59,7 @@ async function renderProject() {
   };
   const openLightbox = (index, sourceImage) => {
     lightboxOpener = sourceImage;
+    lightboxPause = true;
     showLightboxImage(index);
     lightbox.showModal();
     const target = lightboxImage;
@@ -70,11 +81,17 @@ async function renderProject() {
       lightbox.classList.add("is-expanded");
     });
   };
+  function markInteraction() {
+    interactionPause = true;
+    window.clearTimeout(resumeTimer);
+    resumeTimer = window.setTimeout(() => { interactionPause = false; }, AUTO_SCROLL_RESUME_MS);
+  }
   if (images.length) {
     gallery.hidden = false;
-    const track = document.createElement("div");
-    track.className = "gallery-track";
-    track.append(...images.map((image, index) => {
+    viewport.setAttribute("role", "region");
+    viewport.setAttribute("aria-label", "Project screenshots (scrollable)");
+    viewport.tabIndex = 0;
+    const frames = images.map((image, index) => {
       const frame = document.createElement("figure");
       frame.className = "gallery-frame";
       const img = document.createElement("img");
@@ -82,6 +99,7 @@ async function renderProject() {
       img.alt = image.alt || `${project.name} screenshot ${index + 1}`;
       img.loading = index ? "lazy" : "eager";
       img.decoding = "async";
+      img.draggable = false;
       img.tabIndex = 0;
       img.setAttribute("role", "button");
       img.setAttribute("aria-label", `Open enlarged image ${index + 1}`);
@@ -89,50 +107,123 @@ async function renderProject() {
       img.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); openLightbox(index, img); } });
       frame.append(img);
       return frame;
-    }));
-    if (images.length > 1) {
-      [...track.children].slice(0, 2).forEach((frame, offset) => {
-        const clone = frame.cloneNode(true);
-        const cloneIndex = offset;
-        const cloneImage = clone.querySelector("img");
-        cloneImage.addEventListener("click", () => openLightbox(cloneIndex, cloneImage));
-        track.append(clone);
-      });
-    }
-    viewport.replaceChildren(track);
-    if (images.length > 1) {
-      controls.hidden = false;
-      viewport.classList.add("is-carousel");
-      viewport.append(controls);
-      document.querySelector("#gallery-position").textContent = "";
-      const slides = [...track.children];
-      let current = 0;
-      const show = (index) => {
-        current = index;
-        const step = slides[0].getBoundingClientRect().width + 16;
-        track.style.transform = `translateX(-${current * step}px)`;
-      };
-      track.addEventListener("transitionend", () => {
-        if (current >= images.length) {
-          track.style.transition = "none";
-          current = 0;
-          track.style.transform = "translateX(0)";
-          requestAnimationFrame(() => { track.style.transition = ""; });
+    });
+    viewport.replaceChildren(...frames);
+    let position = viewport.scrollLeft;
+    let direction = 1;
+    let edgeWaitStart = null;
+    let lastFrameTime = null;
+    let dragging = false;
+    let dragMoved = false;
+    let dragStartX = 0;
+    let dragBaseScroll = 0;
+    const canAutoScroll = () =>
+      autoScrollEnabled &&
+      images.length > 1 &&
+      viewport.scrollWidth > viewport.clientWidth &&
+      !hoverPause &&
+      !focusPause &&
+      !dragPause &&
+      !lightboxPause &&
+      !interactionPause &&
+      !offscreenPause &&
+      !document.hidden;
+    const tick = (time) => {
+      if (lastFrameTime === null) lastFrameTime = time;
+      const deltaSeconds = (time - lastFrameTime) / 1000;
+      lastFrameTime = time;
+      if (canAutoScroll()) {
+        if (edgeWaitStart === null) {
+          position += direction * AUTO_SCROLL_SPEED * deltaSeconds;
+          const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+          if (direction > 0 && position >= maxScroll) {
+            position = maxScroll;
+            viewport.scrollLeft = position;
+            edgeWaitStart = time;
+          } else if (direction < 0 && position <= 0) {
+            position = 0;
+            viewport.scrollLeft = position;
+            edgeWaitStart = time;
+          } else {
+            viewport.scrollLeft = position;
+          }
+        } else if (time - edgeWaitStart >= AUTO_SCROLL_EDGE_PAUSE_MS) {
+          edgeWaitStart = null;
+          direction = -direction;
         }
-      });
-      document.querySelector("#gallery-prev").addEventListener("click", () => {
-        if (current === 0) {
-          const step = slides[0].getBoundingClientRect().width + 16;
-          track.style.transition = "none";
-          current = images.length;
-          track.style.transform = `translateX(-${current * step}px)`;
-          requestAnimationFrame(() => requestAnimationFrame(() => { track.style.transition = ""; show(current - 1); }));
-        } else show(current - 1);
-      });
-      document.querySelector("#gallery-next").addEventListener("click", () => show(current + 1));
-      show(0);
-      window.setInterval(() => show(current + 1), 2000);
-    }
+      } else {
+        position = viewport.scrollLeft;
+        edgeWaitStart = null;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    viewport.addEventListener("scroll", () => { position = viewport.scrollLeft; });
+    viewport.addEventListener("mouseenter", () => {
+      hoverPause = true;
+      window.clearTimeout(resumeTimer);
+    });
+    viewport.addEventListener("mouseleave", () => {
+      hoverPause = false;
+      markInteraction();
+    });
+    viewport.addEventListener("focusin", () => {
+      focusPause = true;
+      window.clearTimeout(resumeTimer);
+    });
+    viewport.addEventListener("focusout", (event) => {
+      if (viewport.contains(event.relatedTarget)) return;
+      focusPause = false;
+      markInteraction();
+    });
+    viewport.addEventListener("wheel", () => markInteraction(), { passive: true });
+    viewport.addEventListener("touchstart", () => markInteraction(), { passive: true });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) position = viewport.scrollLeft;
+      else markInteraction();
+    });
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      offscreenPause = !entries.some((entry) => entry.intersectionRatio >= 0.3);
+    }, { threshold: 0.3 });
+    intersectionObserver.observe(viewport);
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" || event.button !== 0) return;
+      dragging = true;
+      dragMoved = false;
+      dragStartX = event.clientX;
+      dragBaseScroll = viewport.scrollLeft;
+      markInteraction();
+    });
+    viewport.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const deltaX = event.clientX - dragStartX;
+      if (!dragMoved && Math.abs(deltaX) > 5) {
+        dragMoved = true;
+        dragPause = true;
+        viewport.classList.add("is-dragging");
+      }
+      if (dragMoved) {
+        event.preventDefault();
+        viewport.scrollLeft = dragBaseScroll - deltaX;
+        position = viewport.scrollLeft;
+      }
+    });
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      dragPause = false;
+      viewport.classList.remove("is-dragging");
+      markInteraction();
+    };
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("click", (event) => {
+      if (dragMoved) {
+        event.preventDefault();
+        event.stopPropagation();
+        dragMoved = false;
+      }
+    }, true);
   }
 
   document.querySelector("#lightbox-close").addEventListener("click", () => lightbox.close());
@@ -140,6 +231,8 @@ async function renderProject() {
   document.querySelector("#lightbox-next").addEventListener("click", () => showLightboxImage(lightboxIndex + 1));
   lightbox.addEventListener("click", (event) => { if (event.target === lightbox) lightbox.close(); });
   lightbox.addEventListener("close", () => {
+    lightboxPause = false;
+    markInteraction();
     lightbox.classList.remove("is-expanded");
     lightboxOpener?.focus({ preventScroll: true });
     lightboxOpener = null;
