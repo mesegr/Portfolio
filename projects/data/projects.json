@@ -4,7 +4,7 @@
     "featured": true,
     "name": "Recetario",
     "category": "Web application",
-    "images": [{ "src": "../images/recetario/recetario1.png", "alt": "Recetario, captura de la aplicación" }, { "src": "../images/recetario/recetario2.png", "alt": "Recetario, segunda vista de la aplicación" }, { "src": "../images/recetario/recetario3.png", "alt": "Recetario, tercera vista de la aplicación" }],
+    "images": [{ "src": "../images/recetario/recetario1.jpg", "alt": "Recetario home page with recipe search and featured dishes" }, { "src": "../images/recetario/recetario2.jpg", "alt": "Recipe detail page showing ingredients and preparation steps" }, { "src": "../images/recetario/recetario3.jpg", "alt": "Recetario recipe browsing interface" }],
     "year": "2026",
     "shortDescription": "Basic recipe web for practicing responsive design and web publishing.",
     "description": "A Basic recipe web for a class assignment to practice responsive design, later extended to practice injecting HTML with JavaScript and web publishing.",
@@ -20,14 +20,14 @@
     "featured": true,
     "name": "Veilfire Requiem",
     "category": "2D action-adventure game",
-    "homeImage": "../images/veilfireRequiem/VeilRequiem3.png",
+    "homeImage": "../images/veilfireRequiem/VeilRequiem3.jpg",
     "images": [
-      { "src": "../images/veilfireRequiem/VeilRequiem1.png", "alt": "Veilfire Requiem gameplay screenshot 1" },
-      { "src": "../images/veilfireRequiem/VeilRequiem2.png", "alt": "Veilfire Requiem gameplay screenshot 2" },
-      { "src": "../images/veilfireRequiem/VeilRequiem3.png", "alt": "Veilfire Requiem gameplay screenshot 3" },
-      { "src": "../images/veilfireRequiem/VeilRequiem4.png", "alt": "Veilfire Requiem gameplay screenshot 4" },
-      { "src": "../images/veilfireRequiem/VeilRequiem5.png", "alt": "Veilfire Requiem gameplay screenshot 5" },
-      { "src": "../images/veilfireRequiem/VeilRequiem6.png", "alt": "Veilfire Requiem gameplay screenshot 6" }
+      { "src": "../images/veilfireRequiem/VeilRequiem1.jpg", "alt": "Veilfire Requiem knight facing an enemy in a forest level" },
+      { "src": "../images/veilfireRequiem/VeilRequiem2.jpg", "alt": "Veilfire Requiem character exploring a platforming level" },
+      { "src": "../images/veilfireRequiem/VeilRequiem3.jpg", "alt": "Veilfire Requiem knight confronting a large boss in a red cavern" },
+      { "src": "../images/veilfireRequiem/VeilRequiem4.jpg", "alt": "Veilfire Requiem dialogue scene with a priestess" },
+      { "src": "../images/veilfireRequiem/VeilRequiem5.jpg", "alt": "Veilfire Requiem character jumping between mountain platforms" },
+      { "src": "../images/veilfireRequiem/VeilRequiem6.jpg", "alt": "Veilfire Requiem knight battling a boss in a volcanic arena" }
     ],
     "year": "2024 / 2025",
     "shortDescription": "A 2D action-adventure game developed in Godot while learning new technologies.",
@@ -36,7 +36,8 @@
     "technologies": ["Godot" , "GD Script"],
     "links": {
       "live": "",
-      "github": ""
+      "github": "https://github.com/mesegr/VeilFire-Requiem",
+      "download": "https://github.com/mesegr/VeilFire-Requiem/releases/tag/BETA-1.1.0"
     }
   },
   {
@@ -44,22 +45,22 @@
     "featured": true,
     "name": "TrayTasks",
     "category": "Windows productivity app",
-    "homeImage": "../images/TrayTasks/trayTasks5.png",
+    "homeImage": "../images/TrayTasks/trayTasks5.jpg",
     "images": [
-      { "src": "../images/TrayTasks/trayTasks1.png", "alt": "TrayTasks, main window" },
-      { "src": "../images/TrayTasks/trayTasks2.png", "alt": "TrayTasks, task view" },
-      { "src": "../images/TrayTasks/trayTasks3.png", "alt": "TrayTasks, calendar view" },
-      { "src": "../images/TrayTasks/trayTasks4.png", "alt": "TrayTasks, reminder settings" }
+      { "src": "../images/TrayTasks/trayTasks1.jpg", "alt": "TrayTasks task list open from the Windows system tray" },
+      { "src": "../images/TrayTasks/trayTasks2.jpg", "alt": "TrayTasks daily view with task deadlines and completion controls" },
+      { "src": "../images/TrayTasks/trayTasks3.jpg", "alt": "TrayTasks calendar showing scheduled tasks" },
+      { "src": "../images/TrayTasks/trayTasks4.jpg", "alt": "TrayTasks settings for reminders and notifications" }
     ],
     "year": "2026",
     "shortDescription": "A lightweight Windows task manager that keeps tasks and reminders close at hand in the system tray.",
     "description": "TrayTasks is a Windows desktop app for organizing tasks and reminders from the system tray. Create tasks with dates, times, importance, recurring schedules, and project groups. Use the calendar, configurable advance notifications, snooze, search, and filters to stay on top of what’s next. Your data is stored locally, with backup and restore options.",
     "status": "In Beta",
-    "technologies": [".NET 10", "C#", "Windows Forms"],
+    "technologies": [".NET 10", "C#", "Windows Forms", "GitHub Actions"],
     "links": {
       "live": "",
       "github": "https://github.com/mesegr/Tray-Tasks",
-      "download": "https://github.com/mesegr/Tray-Tasks/releases/download/v0.1.0/TrayTasks-win-x64.zip"
+      "download": "https://github.com/mesegr/Tray-Tasks/releases/latest/download/TrayTasks-win-x64.zip"
     }
   },
   {
@@ -69,16 +70,16 @@
     "category": "Android productivity app",
     "homeImage": "../images/todoapp/todomain.jpg",
     "images": [
-      { "src": "../images/todoapp/todo2.jpg", "alt": "Todo App, add a task" },
-      { "src": "../images/todoapp/todo3.jpg", "alt": "Todo App, edit a task" },
-      { "src": "../images/todoapp/todo4.jpg", "alt": "Todo App, delete a task" },
-      { "src": "../images/todoapp/todo5.jpg", "alt": "Todo App, Android home screen widget" }
+      { "src": "../images/todoapp/todo2.jpg", "alt": "Todo App form for adding a new task" },
+      { "src": "../images/todoapp/todo3.jpg", "alt": "Todo App screen for editing an existing task" },
+      { "src": "../images/todoapp/todo4.jpg", "alt": "Todo App task list with a task deletion action" },
+      { "src": "../images/todoapp/todo5.jpg", "alt": "Todo App task summary displayed in an Android home screen widget" }
     ],
-    "year": "2026",
+    "year": "2025 / 2026",
     "shortDescription": "An Android task manager for organizing daily tasks and recurring reminders, with a handy home screen widget.",
     "description": "Todo App is an Android task manager for creating, editing, and organizing tasks. Set one-time or recurring reminders, receive notifications with vibration, and keep track of what is due today, upcoming, or still pending. Tasks are stored locally on the device, and the home screen widget shows task counts and provides a shortcut to add a task.",
     "status": "Released",
-    "technologies": ["Flutter", "Dart", "Kotlin", "Android SDK", "SharedPreferences"],
+    "technologies": ["Flutter", "Dart", "Kotlin", "Android SDK", "SharedPreferences", "GitHub Actions"],
     "links": {
       "live": "",
       "github": "https://github.com/mesegr/ToDo-app",
@@ -91,14 +92,14 @@
     "name": "Freestylea App",
     "category": "Android freestyle practice app",
     "homeImage": "../images/FreestyleaAPP/free1.jpg",
-    "compactImage": "../images/FreestyleaAPP/logo.png",
+    "compactImage": "../images/FreestyleaAPP/logo.jpg",
     "compactImageAlt": "Freestylea app logo",
     "images": [
-      { "src": "../images/FreestyleaAPP/free2.jpg", "alt": "Freestylea, themes practice screen" },
-      { "src": "../images/FreestyleaAPP/free3.jpg", "alt": "Freestylea, random words screen" },
-      { "src": "../images/FreestyleaAPP/free4.jpg", "alt": "Freestylea, rhyme endings screen" }
+      { "src": "../images/FreestyleaAPP/free2.jpg", "alt": "Freestylea practice mode selection with theme prompts" },
+      { "src": "../images/FreestyleaAPP/free3.jpg", "alt": "Freestylea random word prompts for freestyle practice" },
+      { "src": "../images/FreestyleaAPP/free4.jpg", "alt": "Freestylea rhyme ending prompts for freestyle practice" }
     ],
-    "year": "2026",
+    "year": "2025",
     "shortDescription": "A mobile app for freestyle rappers to practice improvisation with random words, themes, and rhyme endings.",
     "description": "Freestylea helps freestyle rap lovers practice creativity, flow, and improvisation anywhere. Choose a practice mode: get random words that refresh on a timer, explore themes, or receive rhyme endings to spark your next bars. Built as a native Android app with a simple, focused interface.",
     "status": "Available",
@@ -106,7 +107,7 @@
     "links": {
       "live": "",
       "github": "https://github.com/mesegr/Freestylea_APP",
-      "download": "https://github.com/mesegr/Freestylea_APP/releases/tag/V1.0.0"
+      "download": "https://github.com/mesegr/Freestylea_APP/releases/download/V1.0.0/Download.Freestylea.apk"
     }
   },
   {
@@ -114,11 +115,11 @@
     "featured": false,
     "name": "Simon Says Classic",
     "category": "Android game",
-    "homeImage": "../images/simonsays/simonmain.png",
-    "compactImage": "../images/simonsays/logo.png",
+    "homeImage": "../images/simonsays/simonmain.jpg",
+    "compactImage": "../images/simonsays/logo.jpg",
     "compactImageAlt": "Simon Says Classic app logo",
     "images": [
-      { "src": "../images/simonsays/simon1.jpg", "alt": "Simon Says Classic, gameplay" }
+      { "src": "../images/simonsays/simon1.jpg", "alt": "Simon Says Classic start screen with four colored sequence buttons" }
     ],
     "year": "2025",
     "shortDescription": "An Android memory game where you repeat an increasingly long sequence of colored lights.",
@@ -128,7 +129,7 @@
     "links": {
       "live": "",
       "github": "https://github.com/mesegr/Simon-says",
-      "download": "https://github.com/mesegr/Simon-says/releases/download/v1.0.0/Download.Simon.Says.apk"
+      "download": "https://github.com/mesegr/Simon-says/releases/latest/download/Download.Simon.Says.apk"
     }
   }
 ]
