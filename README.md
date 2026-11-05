@@ -38,6 +38,21 @@ Project entries use these fields:
 
 Keep image paths relative to the JSON file's usage in the site, following the existing project entries. Use descriptive alt text for every image.
 
+## Gallery behaviour
+
+Project detail pages show their screenshots in a native horizontal-scrolling gallery: no buttons and no duplicated slides. The scrollbar is shown only on devices with a fine pointer (mouse); on touch devices you swipe the strip directly.
+
+A slow autoscroll drifts the gallery at `AUTO_SCROLL_SPEED = 40` px/s (constant in [`projects/project.js`](projects/project.js)), moving back and forth between both ends. It pauses for 1.2 s on either end and resumes 2.5 s after the last interaction (hover, focus, drag, wheel, touch, an open lightbox, a hidden tab, or the gallery being off-screen). Autoscroll is disabled when the content does not overflow, when only one image exists, or when the user prefers reduced motion (`prefers-reduced-motion: reduce`).
+
+To change the speed, edit `AUTO_SCROLL_SPEED` in `projects/project.js` (pixels per second).
+
+Two optional fields in `projects.json` control the note lists on the project page:
+
+- `highlights`: array of strings, rendered as the "What I built" section.
+- `learned`: array of strings, rendered as the "What I learned" section.
+
+Both sections are omitted when the fields are absent. The detail page also shows its action buttons there: "Live demo" or "Download" as the primary button and "GitHub" as the secondary one.
+
 ## Image convention
 
 - Prefer JPG or WebP for screenshots and photos.
